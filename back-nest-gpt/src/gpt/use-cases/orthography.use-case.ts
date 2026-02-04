@@ -22,6 +22,13 @@ export const orthographyCheckUseCase = async (openai: OpenAI, options: Options) 
                     - mensaje
                     - porcentaje_acierto
                     No agregues texto fuera del JSON.
+                    
+                    Ejemplo de salida:
+                    {
+                    userScore: number,
+                    errors: string[], // ['error -> solución']
+                    message: string, //  Usa emojis y texto para felicitar al usuario
+                    }
                 `
             },
             {
