@@ -12,16 +12,34 @@ export const orthographyCheckUseCase = async (openai: OpenAI, options: Options) 
 
 
     const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: "Eres un asistente muy util" }],
-        model: "gpt-4o"
+        messages: [
+            {
+                role: "system",// El modelo lo trata como instrucciones obligatorias.
+                content: `Eres un corrector ortográfico.
+                    Analiza textos en español.
+                    Devuelve JSON válido con:
+                    - correcciones
+                    - mensaje
+                    - porcentaje_acierto
+                    No agregues texto fuera del JSON.
+                `
+            },
+            {
+                role: 'user',
+                content: prompt
+            }
+        ],
+        model: "gpt-3.5-turbo",
+        temperature: 0.3,
+        max_tokens: 150
     })
 
+    console.log(`respuesta open AI`)
     console.log(completion)
-    return completion.choices[0];
+    console.log(completion.choices[0].message.content)
 
+    const jsonResp = JSON.parse(completion.choices[0].message.content || '')
 
-    //return {
-    //    prompt,
-    //    apikey: process.env.OPENAI_API_KEY
-    //}
+    return jsonResp;
+
 }
