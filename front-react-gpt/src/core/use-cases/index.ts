@@ -1,3 +1,5 @@
+export * from "./translate.use-case";
+
 export * from "./pros-cons-stream-generator.use-case";
 
 export * from "./pros-cons-stream.use-case";
