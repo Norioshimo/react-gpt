@@ -1,3 +1,5 @@
+export * from "./chat-bubbles/GptMessageAudio";
+
 
 
 export * from "./chat-input-boxes/TextMessageBoxSelect";
