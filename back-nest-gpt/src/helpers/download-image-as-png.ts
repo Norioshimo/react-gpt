@@ -49,8 +49,11 @@ export const downloadBase64ImageAsPng = async (base64Image: string, fullPath: bo
     const completePath = path.join(folderPath, imageNamePng);
 
     await sharp(imageBuffer)
-        .png()
         .ensureAlpha()
+        .png()
+        .toColourspace('b-w')              // fuerza blanco/negro
+        .threshold(240)                    // blanco puro
+        .negate({ alpha: false })          // blanco → transparente
         .toFile(completePath);
 
 
