@@ -16,3 +16,6 @@ export * from "./orthography.use-case";
 export * from "./image-generation.use-case";
 export * from "./image-variation.use-case";
 
+
+export * from "./create-thread.use-case";
+export * from "./post-question.use-case"
